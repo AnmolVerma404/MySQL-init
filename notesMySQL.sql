@@ -178,3 +178,116 @@ INSERT INTO cats3(name, age) VALUES('Montana', NULL);
 SELECT * FROM cats3;
 INSERT INTO cats4(name, age) VALUES('Cali', NULL);
 
+-- -Primary Keys
+-- Define a table with a PRIMARY KEY constraint:
+
+CREATE TABLE unique_cats
+  (
+    cat_id INT NOT NULL,
+    name VARCHAR(100),
+    age INT,
+    PRIMARY KEY (cat_id)
+  );
+DESC unique_cats; 
+
+-- Insert some new cats:
+
+INSERT INTO unique_cats(cat_id, name, age) VALUES(1, 'Fred', 23);
+ 
+INSERT INTO unique_cats(cat_id, name, age) VALUES(2, 'Louise', 3);
+ 
+INSERT INTO unique_cats(cat_id, name, age) VALUES(1, 'James', 3);
+-- Notice what happens:
+
+SELECT * FROM unique_cats; 
+
+-- Adding in AUTO_INCREMENT:
+
+CREATE TABLE unique_cats2 (
+    cat_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100),
+    age INT,
+    PRIMARY KEY (cat_id)
+);
+-- INSERT a couple new cats:
+
+INSERT INTO unique_cats2(name, age) VALUES('Skippy', 4);
+INSERT INTO unique_cats2(name, age) VALUES('Jiff', 3);
+INSERT INTO unique_cats2(name, age) VALUES('Jiff', 3);
+INSERT INTO unique_cats2(name, age) VALUES('Jiff', 3);
+INSERT INTO unique_cats2(name, age) VALUES('Skippy', 4);
+-- Notice the difference:
+
+SELECT * FROM unique_cats2; 
+
+-- - Introduction to CRUD (Create, Read, Update, and Delete)
+INSERT INTO cats(name, age) VALUES(‘Taco’, 14);
+
+-- -Preparing Our Data
+-- Let's drop the existing cats table:
+
+DROP TABLE cats; 
+
+-- Recreate a new cats table:
+
+CREATE TABLE cats 
+  ( 
+     cat_id INT NOT NULL AUTO_INCREMENT, 
+     name   VARCHAR(100), 
+     breed  VARCHAR(100), 
+     age    INT, 
+     PRIMARY KEY (cat_id) 
+  ); 
+DESC cats; 
+
+-- And finally insert some new cats:
+
+INSERT INTO cats(name, breed, age) 
+VALUES ('Ringo', 'Tabby', 4),
+       ('Cindy', 'Maine Coon', 10),
+       ('Dumbledore', 'Maine Coon', 11),
+       ('Egg', 'Persian', 4),
+       ('Misty', 'Tabby', 13),
+       ('George Michael', 'Ragdoll', 9),
+       ('Jackson', 'Sphynx', 7);
+
+-- -Simple SELECT statements:
+
+SELECT * FROM cats; 
+SELECT name FROM cats; 
+SELECT age FROM cats; 
+SELECT cat_id FROM cats; 
+SELECT name, age FROM cats; 
+SELECT cat_id, name, age FROM cats; 
+SELECT age, breed, name, cat_id FROM cats; 
+SELECT cat_id, name, age, breed FROM cats; 
+
+-- -Introduction to WHERE
+-- Select by age:
+SELECT * FROM cats WHERE age=4; 
+-- Select by name:
+SELECT * FROM cats WHERE name='Egg'; 
+-- Notice how it deals with case:
+SELECT * FROM cats WHERE name='egG';
+
+-- - Introduction to Aliases 
+-- ALIAS command in SQL is the name that can be given to any table or a column.This alias name can be referred in WHEREclause to identify a particular table or a column.
+SELECT cat_id AS id, name FROM cats;
+SELECT name AS 'cat name', breed AS 'kitty breed' FROM cats;
+DESC cats;
+
+-- - Updating Data
+-- Change tabby cats to shorthair:
+UPDATE cats SET breed='Shorthair' WHERE breed='Tabby'; 
+
+-- Another update:
+UPDATE cats SET age=14 WHERE name='Misty'; 
+
+-- -DELETING DATA
+DELETE FROM cats WHERE name='Egg';
+SELECT * FROM cats;
+SELECT * FROM cats WHERE name='egg';
+DELETE FROM cats WHERE name='egg';
+SELECT * FROM cats;
+DELETE FROM cats;
+
