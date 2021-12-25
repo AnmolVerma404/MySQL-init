@@ -358,12 +358,12 @@ SELECT * FROM books;
 
 -- 🔴Working With CONCAT
 SELECT author_fname, author_lname FROM books;
-CONCAT(x,y,z) // from slides
-CONCAT(column, anotherColumn) // from slides
+CONCAT(x,y,z) -- from slides
+CONCAT(column, anotherColumn) -- from slides
 CONCAT(author_fname, author_lname)
 CONCAT(column, 'text', anotherColumn, 'more text')
 CONCAT(author_fname, ' ', author_lname)
-CONCAT(author_fname, author_lname); // invalid syntax
+CONCAT(author_fname, author_lname); -- invalid syntax
 SELECT CONCAT('Hello', 'World');
 SELECT CONCAT('Hello', '...', 'World');
 SELECT CONCAT(author_fname, ' ', author_lname FROM books;
@@ -399,3 +399,31 @@ SELECT CONCAT
     ) AS 'short title'
 FROM books;
 source book_code.sql
+
+-- 🔴Introducing REPLACE
+SELECT REPLACE('Hello World', 'Hell', '%$#@');
+SELECT REPLACE('Hello World', 'l', '7');
+SELECT REPLACE('Hello World', 'o', '0');
+SELECT REPLACE('HellO World', 'o', '*');
+SELECT REPLACE('cheese bread coffee milk', ' ', ' and ');
+SELECT REPLACE(title, 'e ', '3') FROM books;
+SELECT CONCAT -- Instead of CANCAT we can also substring the replaced string
+    (
+       SUBSTRING(title, 1, 10),
+       '...'
+   ) AS 'short title' FROM books;
+-- Eg
+SELECT SUBSTRING(REPLACE(title, 'e', '3'), 1, 10) FROM books;
+SELECT SUBSTRING(REPLACE(title, 'e', '3'), 1, 10) AS 'weird string' FROM books;
+
+-- 🔴Using REVERSE
+SELECT REVERSE('Hello World');
+SELECT REVERSE('meow meow');
+SELECT REVERSE(author_fname) FROM books;
+SELECT CONCAT('woof', REVERSE('woof'));
+SELECT CONCAT(author_fname, REVERSE(author_fname)) FROM books;
+
+-- 🔴Working with CHAR LENGTH
+SELECT CHAR_LENGTH('Hello World');
+SELECT author_lname, CHAR_LENGTH(author_lname) AS 'length' FROM books;
+SELECT CONCAT(author_lname, ' is ', CHAR_LENGTH(author_lname), ' characters long') FROM books;
