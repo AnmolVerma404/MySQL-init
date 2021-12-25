@@ -1,4 +1,4 @@
--- -Creating Databases Code
+-- 🔴Creating Databases Code
 -- Start the CLI:
 
 -- mysql-ctl cli; 
@@ -290,4 +290,26 @@ SELECT * FROM cats WHERE name='egg';
 DELETE FROM cats WHERE name='egg';
 SELECT * FROM cats;
 DELETE FROM cats;
+
+-- -Running SQL Files i.e. if our SQL code is too big and we write in a file, so now how we will run it!!!
+CREATE TABLE cats
+    (
+        cat_id INT NOT NULL AUTO_INCREMENT,
+        name VARCHAR(100),
+        age INT,
+        PRIMARY KEY(cat_id)
+    );
+ 
+mysql-ctl cli
+use cat_app;
+source first_file.sql
+ 
+DESC cats;
+
+INSERT INTO cats(name, age)
+VALUES('Charlie', 17);
+INSERT INTO cats(name, age)
+VALUES('Connie', 10);
+SELECT * FROM cats;
+source folder_name/insert.sql
 
