@@ -497,7 +497,18 @@ SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 0,5;
 SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 0,3;
 SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 1,3;
 SELECT title, released_year FROM books ORDER BY released_year DESC LIMIT 10,1;
-SELECT * FROM tbl LIMIT 95,18446744073709551615;--A big number just to display all the rows as there can't be these many rows
+--A big number just to display all the rows as there can't be these many rows
+SELECT * FROM tbl LIMIT 95,18446744073709551615;
 SELECT title FROM books LIMIT 5;
 SELECT title FROM books LIMIT 5, 123219476457;
 SELECT title FROM books LIMIT 5, 50;
+
+-- 🔴 Introduction to LIKE, Better Searches with LIKE (LIKE is case insensitive)
+-- The "%" sign indicates that before it any letter can be there or vice versa
+SELECT title, author_fname FROM books WHERE author_fname LIKE '%da%';
+-- Below the searched string should start with da
+SELECT title, author_fname FROM books WHERE author_fname LIKE 'da%';
+SELECT title FROM books WHERE  title LIKE 'the';
+-- Below the searched string should end with the
+SELECT title FROM books WHERE  title LIKE '%the';
+SELECT title FROM books WHERE title LIKE '%the%';
