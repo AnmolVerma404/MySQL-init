@@ -446,3 +446,19 @@ SELECT CONCAT(UPPER(author_fname, ' ', author_lname)) AS "full name in caps"  FR
 -- You could do it this way, however:
 SELECT CONCAT(UPPER(author_fname), ' ', UPPER(author_lname)) AS "full name in caps" FROM books;
 -- But, the first example above would be better (more DRY*) because you wouldn't need to call UPPER two times.
+
+-- 🔴Refining our selection and some new concept
+-- Adding A Couple New Books
+INSERT INTO books
+    (title, author_fname, author_lname, released_year, stock_quantity, pages)
+    VALUES ('10% Happier', 'Dan', 'Harris', 2014, 29, 256), 
+           ('fake_book', 'Freida', 'Harris', 2001, 287, 428),
+           ('Lincoln In The Bardo', 'George', 'Saunders', 2017, 1000, 367);
+SELECT title FROM books;
+
+-- 🔴Using DISTINCT
+SELECT author_lname FROM books;
+SELECT DISTINCT author_lname FROM books;
+SELECT author_fname, author_lname FROM books;
+SELECT DISTINCT CONCAT(author_fname,' ', author_lname) FROM books;
+SELECT DISTINCT author_fname, author_lname FROM books;
