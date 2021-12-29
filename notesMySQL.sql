@@ -462,3 +462,25 @@ SELECT DISTINCT author_lname FROM books;
 SELECT author_fname, author_lname FROM books;
 SELECT DISTINCT CONCAT(author_fname,' ', author_lname) FROM books;
 SELECT DISTINCT author_fname, author_lname FROM books;
+
+-- 🔴Sorting Data with ORDER BY
+-- Here ASC - Ascending  and DESC - Descending
+SELECT author_lname FROM books;
+SELECT author_lname FROM books ORDER BY author_lname;
+SELECT title FROM books;
+SELECT title FROM books ORDER BY title;
+SELECT author_lname FROM books ORDER BY author_lname DESC;
+SELECT released_year FROM books;
+SELECT released_year FROM books ORDER BY released_year;
+SELECT released_year FROM books ORDER BY released_year DESC;
+SELECT released_year FROM books ORDER BY released_year ASC;
+SELECT title, released_year, pages FROM books ORDER BY released_year;
+SELECT title, pages FROM books ORDER BY released_year;
+-- ORDER BY 2 it's a shortcut so that we don't have to write author_fname again and the index start from 1
+SELECT title, author_fname, author_lname FROM books ORDER BY 2;
+SELECT title, author_fname, author_lname FROM books ORDER BY 3;
+SELECT title, author_fname, author_lname FROM books ORDER BY 1;
+SELECT title, author_fname, author_lname FROM books ORDER BY 1 DESC;
+SELECT author_lname, titleFROM books ORDER BY 2;
+SELECT author_fname, author_lname FROM books 
+ORDER BY author_lname, author_fname;
