@@ -512,3 +512,14 @@ SELECT title FROM books WHERE  title LIKE 'the';
 -- Below the searched string should end with the
 SELECT title FROM books WHERE  title LIKE '%the';
 SELECT title FROM books WHERE title LIKE '%the%';
+-- Also if we want to do compare wrt to character length we should use "_" sign for the number of character
+SELECT title, stock_quantity FROM books;
+--This work on both string and integer
+SELECT title, stock_quantity FROM books WHERE stock_quantity LIKE '____';
+SELECT title, stock_quantity FROM books WHERE stock_quantity LIKE '__';
+-- This can we used to find the correct phone code or etc.
+(235)234-0987 LIKE '(___)___-____'
+SELECT title FROM books;
+-- If we have "%" or "_" sign to be search we can use backslash as an escape character
+SELECT title FROM books WHERE title LIKE '%\%%'
+SELECT title FROM books WHERE title LIKE '%\_%'
