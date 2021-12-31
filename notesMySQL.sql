@@ -544,4 +544,12 @@ SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname;
 SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname, author_fname;
 SELECT released_year FROM books;
 SELECT released_year, COUNT(*) FROM books GROUP BY released_year;
-SELECT CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') A
+SELECT CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') AS year FROM books GROUP BY released_year;
+
+-- 🔴MIN and MAX Basics
+SELECT MIN(released_year) FROM books;
+SELECT MIN(released_year) FROM books;
+SELECT MIN(pages) FROM books;
+SELECT MAX(pages) FROM books;
+SELECT MAX(released_year) FROM books;
+SELECT MAX(pages), titl FROM books;
