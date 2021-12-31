@@ -523,3 +523,12 @@ SELECT title FROM books;
 -- If we have "%" or "_" sign to be search we can use backslash as an escape character
 SELECT title FROM books WHERE title LIKE '%\%%'
 SELECT title FROM books WHERE title LIKE '%\_%'
+
+-- 🔴The Count Function
+SELECT COUNT(*) FROM books;
+SELECT COUNT(author_fname) FROM books;
+SELECT COUNT(DISTINCT author_fname) FROM books;
+SELECT COUNT(DISTINCT author_lname) FROM books;
+SELECT COUNT(DISTINCT author_lname, author_fname) FROM books;
+SELECT title FROM books WHERE title LIKE '%the%';
+SELECT COUNT(*) FROM books WHERE title LIKE '%the%';
