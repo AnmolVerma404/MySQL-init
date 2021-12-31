@@ -532,3 +532,16 @@ SELECT COUNT(DISTINCT author_lname) FROM books;
 SELECT COUNT(DISTINCT author_lname, author_fname) FROM books;
 SELECT title FROM books WHERE title LIKE '%the%';
 SELECT COUNT(*) FROM books WHERE title LIKE '%the%';
+
+-- 🔴Introduction to GROUP BY
+SELECT title, author_lname FROM books;
+--👇 Below will just show title of the first book which was published by author_lname.
+SELECT title, author_lname FROM books GROUP BY author_lname;
+SELECT author_lname, COUNT(*) FROM books GROUP BY author_lname;
+SELECT title, author_fname, author_lname FROM books;
+SELECT title, author_fname, author_lname FROM books GROUP BY author_lname;
+SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname;
+SELECT author_fname, author_lname, COUNT(*) FROM books GROUP BY author_lname, author_fname;
+SELECT released_year FROM books;
+SELECT released_year, COUNT(*) FROM books GROUP BY released_year;
+SELECT CONCAT('In ', released_year, ' ', COUNT(*), ' book(s) released') A
