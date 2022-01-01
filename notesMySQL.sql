@@ -552,4 +552,5 @@ SELECT MIN(released_year) FROM books;
 SELECT MIN(pages) FROM books;
 SELECT MAX(pages) FROM books;
 SELECT MAX(released_year) FROM books;
-SELECT MAX(pages), titl FROM books;
+-- The problem in the below query is, it gives the max page book but do not show the correct title
+SELECT MAX(pages), title FROM books;
