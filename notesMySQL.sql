@@ -554,3 +554,13 @@ SELECT MAX(pages) FROM books;
 SELECT MAX(released_year) FROM books;
 -- The problem in the below query is, it gives the max page book but do not show the correct title
 SELECT MAX(pages), title FROM books;
+
+-- 🔴A Problem with Min and Max
+-- Solution 1 :- This will run 2 queries therefor it's slow
+SELECT * FROM books WHERE pages = (SELECT Min(pages) FROM books); 
+SELECT title, pages FROM books WHERE pages = (SELECT Max(pages) FROM books); 
+SELECT title, pages FROM books WHERE pages = (SELECT Min(pages) FROM books); 
+-- Solution 2 :- Only one query therefor faster than solution 1
+SELECT * FROM books ORDER BY pages ASC LIMIT 1;
+SELECT title, pages FROM books ORDER BY pages ASC LIMIT 1;
+SELECT * FROM books ORDER BY pages DESC LIMIT 1;
