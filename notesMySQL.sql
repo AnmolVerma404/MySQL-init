@@ -592,6 +592,15 @@ INSERT INTO dogs (name, breed) VALUES ('robby', 'corgi');
 -- 👇 The inserted name is well long than the length so we will only see Princ
 INSERT INTO dogs (name, breed) VALUES ('Princess Jane', 'Retriever');
 SELECT * FROM dogs;
--- 👇 The inserted breed datatype is indeed VARCHAR but if it goes over it's max length it will slice to the max length given in the line 5️⃣8️⃣8️⃣, but if breed.length<(given) it will not take extra space as it took in the case of CHAR datatype
+-- 👇 The inserted breed datatype is indeed VARCHAR but if it goes over it's max length it will slice to the max length given in the line 588, but if breed.length<(given) it will not take extra space as it took in the case of CHAR datatype
 INSERT INTO dogs (name, breed) VALUES ('Princess Jane', 'Retrievesadfdsafdasfsafr');
 SELECT * FROM dogs;
+
+-- 🔴DECIMAL
+CREATE TABLE items(price DECIMAL(5,2));
+INSERT INTO items(price) VALUES(7);-- 7.00
+INSERT INTO items(price) VALUES(7987654);-- 999.99
+INSERT INTO items(price) VALUES(34.88);-- 34.88
+INSERT INTO items(price) VALUES(298.9999);-- 299.00
+INSERT INTO items(price) VALUES(1.9999);-- 2.00
+SELECT * FROM items;
