@@ -583,3 +583,15 @@ SELECT AVG(pages)  FROM books;
 SELECT AVG(stock_quantity)  FROM books  GROUP BY released_year;
 SELECT released_year, AVG(stock_quantity)  FROM books  GROUP BY released_year;
 SELECT author_fname, author_lname, AVG(pages) FROM books GROUP BY author_lname, author_fname;
+
+-- 🔴CHAR and VARCHAR
+CREATE TABLE dogs (name CHAR(5), breed VARCHAR(10));
+INSERT INTO dogs (name, breed) VALUES ('bob', 'beagle');
+INSERT INTO dogs (name, breed) VALUES ('robby', 'corgi');
+-- 👆 As the CHAR is 5 max length therefore bob and robby will not be affected but bob will also take 5 length 3(character)+2(space)
+-- 👇 The inserted name is well long than the length so we will only see Princ
+INSERT INTO dogs (name, breed) VALUES ('Princess Jane', 'Retriever');
+SELECT * FROM dogs;
+-- 👇 The inserted breed datatype is indeed VARCHAR but if it goes over it's max length it will slice to the max length given in the line 5️⃣8️⃣8️⃣, but if breed.length<(given) it will not take extra space as it took in the case of CHAR datatype
+INSERT INTO dogs (name, breed) VALUES ('Princess Jane', 'Retrievesadfdsafdasfsafr');
+SELECT * FROM dogs;
