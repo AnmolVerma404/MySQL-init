@@ -604,3 +604,22 @@ INSERT INTO items(price) VALUES(34.88);-- 34.88
 INSERT INTO items(price) VALUES(298.9999);-- 299.00
 INSERT INTO items(price) VALUES(1.9999);-- 2.00
 SELECT * FROM items;
+
+-- 🔴FLOAT precision upto 7 digits
+CREATE TABLE thingies (price FLOAT);
+INSERT INTO thingies(price) VALUES (88.45);-- 88.45
+SELECT * FROM thingies;
+INSERT INTO thingies(price) VALUES (8877.45);-- 8877.45
+SELECT * FROM thingies;
+INSERT INTO thingies(price) VALUES (8877665544.45);-- 8877670000
+SELECT * FROM thingies;
+-- 🔴DOUBLE precision upto 15 digits
+CREATE TABLE again_thingies (price DOUBLE);
+INSERT INTO again_thingies(price) VALUES (88.45);-- 88.45
+SELECT * FROM again_thingies;
+INSERT INTO again_thingies(price) VALUES (8877.45);-- 8877.45
+SELECT * FROM again_thingies;
+INSERT INTO again_thingies(price) VALUES (8877665544.45);-- 8877665544.45
+SELECT * FROM again_thingies;
+INSERT INTO again_thingies(price) VALUES (8877665544.4572361872361);-- 8877665544.457235
+SELECT * FROM again_thingies;
