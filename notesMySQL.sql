@@ -653,3 +653,14 @@ SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) F
 SELECT DATE_FORMAT(birthdt, 'Was born on a %W') FROM people;
 SELECT DATE_FORMAT(birthdt, '%m/%d/%Y') FROM people;
 SELECT DATE_FORMAT(birthdt, '%m/%d/%Y at %h:%i') FROM people;
+
+-- 🔴Date Math
+SELECT * FROM people;
+SELECT DATEDIFF(NOW(), birthdate) FROM people;
+SELECT name, birthdate, DATEDIFF(NOW(), birthdate) FROM people;
+SELECT birthdt FROM people;
+SELECT birthdt, DATE_ADD(birthdt, INTERVAL 1 MONTH) FROM people;
+SELECT birthdt, DATE_ADD(birthdt, INTERVAL 10 SECOND) FROM people;
+SELECT birthdt, DATE_ADD(birthdt, INTERVAL 3 QUARTER) FROM people;
+SELECT birthdt, birthdt + INTERVAL 1 MONTH FROM people;
+SELECT birthdt, birthdt - INTERVAL 5 MONTH FROM people;
