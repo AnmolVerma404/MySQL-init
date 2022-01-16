@@ -664,3 +664,27 @@ SELECT birthdt, DATE_ADD(birthdt, INTERVAL 10 SECOND) FROM people;
 SELECT birthdt, DATE_ADD(birthdt, INTERVAL 3 QUARTER) FROM people;
 SELECT birthdt, birthdt + INTERVAL 1 MONTH FROM people;
 SELECT birthdt, birthdt - INTERVAL 5 MONTH FROM people;
+
+-- 🔴Working with TIMESTAMPS
+CREATE TABLE comments (
+    content VARCHAR(100),
+    created_at TIMESTAMP DEFAULT NOW()--unlike DATETIME which ranges from 1000-01-01 00:00:00 to 9999-12-31 23:59:59, TIMESTAMP range less i.e. 1970-01-01 00:00:00 to 2038-12-31 23:59:59, therefor TIMESTAMP is space friendly
+);
+INSERT INTO comments (content) VALUES('lol what a funny article');
+INSERT INTO comments (content) VALUES('I found this offensive');
+INSERT INTO comments (content) VALUES('Ifasfsadfsadfsad');
+SELECT * FROM comments ORDER BY created_at DESC;
+CREATE TABLE comments2 (
+    content VARCHAR(100),
+    changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP
+);
+INSERT INTO comments2 (content) VALUES('dasdasdasd');
+INSERT INTO comments2 (content) VALUES('lololololo');
+INSERT INTO comments2 (content) VALUES('I LIKE CATS AND DOGS');
+UPDATE comments2 SET content='THIS IS NOT GIBBERISH' WHERE content='dasdasdasd';--This will update the time, can be used if someone edit's the text
+SELECT * FROM comments2;
+SELECT * FROM comments2 ORDER BY changed_at;
+CREATE TABLE comments2 (
+    content VARCHAR(100),
+    changed_at TIMESTAMP DEFAULT NOW() ON UPDATE NOW()
+);
