@@ -748,3 +748,13 @@ SELECT 40 <= 100 || -2 > 0;    -- true
 SELECT 10 > 5 || 5 = 5;        -- true
 SELECT 'a' = 5 || 3000 > 2000; -- true
 SELECT title, author_lname, released_year, stock_quantity  FROM   books  WHERE  author_lname = 'Eggers' || released_year > 2010  OR stock_quantity > 100;
+
+-- 🔴Between
+SELECT title, released_year FROM books WHERE released_year >= 2004 && released_year <= 2015;
+SELECT title, released_year FROM books  WHERE released_year BETWEEN 2004 AND 2015;
+SELECT title, released_year FROM books  WHERE released_year NOT BETWEEN 2004 AND 2015;
+SELECT CAST('2017-05-02' AS DATETIME);
+SHOW databases;
+USE new_testing_db;
+SELECT name, birthdt FROM people WHERE birthdt BETWEEN '1980-01-01' AND '2000-01-01';
+SELECT  name,  birthdt  FROM people WHERE  birthdt BETWEEN CAST('1980-01-01' AS DATETIME) AND CAST('2000-01-01' AS DATETIME);
