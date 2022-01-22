@@ -838,3 +838,12 @@ VALUES ('2016/02/10', 99.99, 1),
 -- This INSERT fails because of our fk constraint.  No user with id: 98 (may be used as kind of authentication)
 INSERT INTO orders (order_date, amount, customer_id)
 VALUES ('2016/06/06', 33.67, 98);
+
+-- 🔴Cross Joins
+-- Finding Orders Placed By George: 2 Step Process
+SELECT id FROM customers WHERE last_name='George';
+SELECT * FROM orders WHERE customer_id = 1;
+-- Finding Orders Placed By George: Using a subquery
+SELECT * FROM orders WHERE customer_id = ( SELECT id FROM customers WHERE last_name='George' );
+-- Cross Join Craziness
+SELECT * FROM customers, orders; 
