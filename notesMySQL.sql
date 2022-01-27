@@ -948,3 +948,35 @@ SELECT first_name, last_name, rating FROM reviews INNER JOIN reviewers ON review
 SELECT title AS unreviewed_series FROM series LEFT JOIN reviews ON series.id = reviews.series_id WHERE rating IS NULL;
 -- GENRE AVG RATINGS
 SELECT genre,  Round(Avg(rating), 2) AS avg_rating FROM series INNER JOIN reviews ON series.id = reviews.series_id GROUP BY genre; 
+-- Reviewer Stats 
+  -- USING IF
+  SELECT first_name, 
+        last_name, 
+        Count(rating)                               AS COUNT, 
+        Ifnull(Min(rating), 0)                      AS MIN, 
+        Ifnull(Max(rating), 0)                      AS MAX, 
+        Round(Ifnull(Avg(rating), 0), 2)            AS AVG, 
+        -- Here we see use if IF statement, where the first parameter is condition and
+        -- second will execute if the condition is true and if not third will execute.
+        IF(Count(rating) > 0, 'ACTIVE', 'INACTIVE') AS STATUS
+  FROM   reviewers 
+        LEFT JOIN reviews 
+                ON reviewers.id = reviews.reviewer_id 
+  GROUP  BY reviewers.id; 
+  -- USING CASE
+  SELECT first_name, 
+        last_name, 
+        Count(rating)                    AS COUNT, 
+        Ifnull(Min(rating), 0)           AS MIN, 
+        Ifnull(Max(rating), 0)           AS MAX, 
+        Round(Ifnull(Avg(rating), 0), 2) AS AVG, 
+        -- Multiple conditional statement
+        CASE 
+          WHEN Count(rating) >= 10 THEN 'POWER USER' 
+          WHEN Count(rating) > 0 THEN 'ACTIVE' 
+          ELSE 'INACTIVE' 
+        end                              AS STATUS 
+  FROM   reviewers 
+        LEFT JOIN reviews 
+                ON reviewers.id = reviews.reviewer_id 
+  GROUP  BY reviewers.id; 
