@@ -946,3 +946,5 @@ SELECT title, AVG(rating) as avg_rating FROM series JOIN reviews ON series.id = 
 SELECT first_name, last_name, rating FROM reviews INNER JOIN reviewers ON reviewers.id = reviews.reviewer_id;
 -- UNREVIEWED SERIES
 SELECT title AS unreviewed_series FROM series LEFT JOIN reviews ON series.id = reviews.series_id WHERE rating IS NULL;
+-- GENRE AVG RATINGS
+SELECT genre,  Round(Avg(rating), 2) AS avg_rating FROM series INNER JOIN reviews ON series.id = reviews.series_id GROUP BY genre; 
