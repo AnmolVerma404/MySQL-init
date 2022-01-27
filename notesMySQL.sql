@@ -940,3 +940,5 @@ INSERT INTO reviews(series_id, reviewer_id, rating) VALUES
     (14,2,8.5),(14,3,8.9),(14,4,8.9);
 -- Inner Join in TV_rating
 SELECT  title,  rating  FROM series JOIN reviews ON series.id = reviews.series_id;
+-- AVG with inner join to find IMDB
+SELECT title, AVG(rating) as avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY series.id ORDER BY avg_rating;
