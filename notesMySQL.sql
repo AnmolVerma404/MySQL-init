@@ -944,3 +944,5 @@ SELECT  title,  rating  FROM series JOIN reviews ON series.id = reviews.series_i
 SELECT title, AVG(rating) as avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY series.id ORDER BY avg_rating;
 -- All reviewer's review
 SELECT first_name, last_name, rating FROM reviews INNER JOIN reviewers ON reviewers.id = reviews.reviewer_id;
+-- UNREVIEWED SERIES
+SELECT title AS unreviewed_series FROM series LEFT JOIN reviews ON series.id = reviews.series_id WHERE rating IS NULL;
