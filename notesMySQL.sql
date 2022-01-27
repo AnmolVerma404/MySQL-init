@@ -938,3 +938,5 @@ INSERT INTO reviews(series_id, reviewer_id, rating) VALUES
     (10,5,9.9),
     (13,3,8.0),(13,4,7.2),
     (14,2,8.5),(14,3,8.9),(14,4,8.9);
+-- Inner Join in TV_rating
+SELECT  title,  rating  FROM series JOIN reviews ON series.id = reviews.series_id;
