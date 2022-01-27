@@ -980,3 +980,17 @@ SELECT genre,  Round(Avg(rating), 2) AS avg_rating FROM series INNER JOIN review
         LEFT JOIN reviews 
                 ON reviewers.id = reviews.reviewer_id 
   GROUP  BY reviewers.id; 
+-- Finally we use all three TABLES, we can just write multiple JOIN statement normally one after other
+SELECT  title, rating, CONCAT(first_name,' ', last_name) AS reviewer FROM reviewers
+  INNER JOIN reviews 
+      ON reviewers.id = reviews.reviewer_id
+  INNER JOIN series
+      ON series.id = reviews.series_id
+  ORDER BY title;
+--OR
+SELECT title, rating,CONCAT(first_name," ",last_name) AS reviewer FROM reviewers
+  INNER JOIN series
+  INNER JOIN reviews
+  ON reviewers.id = reviews.reviewer_id
+      && series.id = reviews.series_id
+  ORDER BY title;
