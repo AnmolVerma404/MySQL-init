@@ -998,4 +998,27 @@ SELECT title, rating,CONCAT(first_name," ",last_name) AS reviewer FROM reviewers
 -- 🔴Instagram Database Clone
 CREATE DATABASE ig_clone;
 USE ig_clone;
-CREATE TABLE users ( id INTEGER AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, created_at TIMESTAMP DEFAULT NOW());
+-- User table
+CREATE TABLE users ( 
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+-- Photos Table
+CREATE TABLE photos(
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    image_url VARCHAR(255) NOT NULL,
+    user_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+-- IG Clone Comments Schema
+CREATE TABLE comments (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    comment_text VARCHAR(255) NOT NULL,
+    photo_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(photo_id) REFERENCES photos(id),
+    FOREIGN KEY(user_id) REFERENCES users(id)
+);
