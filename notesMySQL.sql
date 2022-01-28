@@ -994,3 +994,8 @@ SELECT title, rating,CONCAT(first_name," ",last_name) AS reviewer FROM reviewers
   ON reviewers.id = reviews.reviewer_id
       && series.id = reviews.series_id
   ORDER BY title;
+
+-- 🔴Instagram Database Clone
+CREATE DATABASE ig_clone;
+USE ig_clone;
+CREATE TABLE users ( id INTEGER AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255) UNIQUE NOT NULL, created_at TIMESTAMP DEFAULT NOW());
