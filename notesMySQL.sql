@@ -1031,3 +1031,12 @@ CREATE TABLE likes (
     FOREIGN KEY(photo_id) REFERENCES photos(id),
     PRIMARY KEY(user_id, photo_id) -- This will ensure that no one liked more than once per image by unique user
 );
+-- 🔴IG Clone Followers Schema
+CREATE TABLE follows (
+    follower_id INTEGER NOT NULL,
+    followee_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES users(id),
+    FOREIGN KEY(followee_id) REFERENCES users(id),
+    PRIMARY KEY(follower_id, followee_id)
+);
