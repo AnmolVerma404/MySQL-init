@@ -1073,3 +1073,10 @@ SELECT (SELECT Count(*) FROM photos)/(SELECT Count(*) FROM users) AS avg;
 -- Find the five most popular hashtags
 SELECT tags.tag_name,  Count(*) AS total FROM photo_tags JOIN tags ON photo_tags.tag_id = tags.id 
 GROUP  BY tags.id  ORDER  BY total DESC  LIMIT  5; 
+
+-- Finding the bots - the users who have liked every single photo
+-- The HAVING keyword is used as WHERE dose not work after group by
+SELECT username, Count(*) AS num_likes 
+FROM users INNER JOIN likes ON users.id = likes.user_id 
+GROUP  BY likes.user_id 
+HAVING num_likes = (SELECT Count(*) FROM photos); 
