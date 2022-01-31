@@ -1053,3 +1053,10 @@ CREATE TABLE photo_tags (
     FOREIGN KEY(tag_id) REFERENCES tags(id),
     PRIMARY KEY(photo_id, tag_id)
 );
+-- Insert data for insta user is in the file name as ig_clone_data.sql
+-- Finding 5 oldest users
+SELECT *  FROM users ORDER BY created_at LIMIT 5;
+-- Most Popular Registration Date
+SELECT  DAYNAME(created_at) AS day, COUNT(*) AS total FROM users GROUP BY day ORDER BY total DESC LIMIT 2;
+-- Identify Inactive Users (users with no photos)
+SELECT username FROM users LEFT JOIN photos ON users.id = photos.user_id WHERE photos.id IS NULL;
