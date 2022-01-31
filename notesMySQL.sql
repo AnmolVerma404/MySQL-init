@@ -1069,3 +1069,7 @@ SELECT  username, photos.id, photos.image_url,  COUNT(*) AS total FROM photos
 
 -- Calculate average number of photos per user
 SELECT (SELECT Count(*) FROM photos)/(SELECT Count(*) FROM users) AS avg; 
+
+-- Find the five most popular hashtags
+SELECT tags.tag_name,  Count(*) AS total FROM photo_tags JOIN tags ON photo_tags.tag_id = tags.id 
+GROUP  BY tags.id  ORDER  BY total DESC  LIMIT  5; 
