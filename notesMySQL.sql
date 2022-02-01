@@ -1080,3 +1080,12 @@ SELECT username, Count(*) AS num_likes
 FROM users INNER JOIN likes ON users.id = likes.user_id 
 GROUP  BY likes.user_id 
 HAVING num_likes = (SELECT Count(*) FROM photos); 
+
+-- 🔴 node JS with MySql
+-- Creating Our Users Table
+-- Simple SQL To Create The Users Table
+CREATE DATABASE join_us;
+CREATE TABLE users (
+    email VARCHAR(255) PRIMARY KEY,
+    created_at TIMESTAMP DEFAULT NOW()
+);
