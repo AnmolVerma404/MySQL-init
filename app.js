@@ -52,3 +52,20 @@ connection.query(b,function (error, results, fields,){
 	console.log(results);
 });
 connection.end();
+// 🔴Inserting data
+var b = 'INSERT INTO users(email) VALUES ("rusty_the_dog@gmail.com")';
+connection.query(b,function (error, results, fields,){
+	if(error) throw error;
+	console.log(results);
+});
+connection.end();
+
+// An easier approach that allows for dynamic data
+var person = {
+    email: faker.internet.email(),
+    created_at: faker.date.past()
+};
+var end_result = connection.query('INSERT INTO users SET ?', person, function(err, result) {
+  if (err) throw err;
+  console.log(result);
+});
