@@ -69,3 +69,20 @@ var end_result = connection.query('INSERT INTO users SET ?', person, function(er
   if (err) throw err;
   console.log(result);
 });
+
+// 🔴Bulk Inserting 500 Users
+// The Code To INSERT 500 Random Users
+
+var data = [];
+for(var i = 0; i < 500; i++){
+    data.push([
+        faker.internet.email(),
+        faker.date.past()
+    ]);
+}
+var q = 'INSERT INTO users (email, created_at) VALUES ?';
+connection.query(q, [data], function(err, result) {
+  console.log(err);
+  console.log(result);
+});
+connection.end();
