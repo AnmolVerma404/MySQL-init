@@ -1089,3 +1089,33 @@ CREATE TABLE users (
     email VARCHAR(255) PRIMARY KEY,
     created_at TIMESTAMP DEFAULT NOW()
 );
+-- Oldest user
+SELECT DATE_FORMAT(created_at,'%b %D %Y') 
+AS earliest_date
+FROM users 
+GROUP BY created_at LIMIT 1;
+-- Oldest user with email 2 ways shown
+SELECT email, created_at
+FROM users 
+GROUP BY created_at LIMIT 1;
+-- All users grouped by month
+SELECT DATE_FORMAT(created_at,'%M') AS month,
+COUNT(*) AS count
+FROM users
+GROUP BY month
+ORDER BY count DESC;
+-- Number of users with yahoo email
+SELECT COUNT(email) AS yahoo_users
+FROM users
+WHERE email LIKE '%@yahoo.com';
+-- How many user are using gmail or yahoo or hotmail
+SELECT CASE
+        WHEN email LIKE '%@yahoo.com' THEN 'yahoo'
+        WHEN email LIKE '%@gmail.com' THEN 'google'
+        WHEN email LIKE '%@hotmail.com' THEN 'hotmail'
+        ELSE 'other'
+        END AS 'provider',
+        COUNT(*) total_users
+FROM users
+GROUP BY provider
+ORDER BY total_users DESC;
