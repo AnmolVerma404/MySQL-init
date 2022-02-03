@@ -1,11 +1,12 @@
 {
-  "name": "MySQL",
+  "name": "mysql_init",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "mysql": "^2.18.1",
-    "faker": "^5.5.3"
+    "express": "^4.17.2",
+    "faker": "^5.5.3",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {},
   "scripts": {
