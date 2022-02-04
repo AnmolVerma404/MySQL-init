@@ -94,6 +94,17 @@ var app = express();
 app.get("/", function(req, res){
  res.send("HELLO FROM OUR WEB APP!");
 });
+
+//Similarly we can add multiple route!!!
+app.get("/joke", function(req,res){
+	var joke = "What do you call the dog that do magic tricks? A labracadabrador";
+	res.send(joke);
+});
+
+app.get("/random_num",function(req, res){
+	var x = Math.floor(Math.random()*10) + 1;
+	res.send("Your lucky number is " + x);
+});
  
 app.listen(8080, function () {
  console.log('App listening on port 8080!');
