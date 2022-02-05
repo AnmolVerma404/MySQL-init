@@ -146,3 +146,6 @@ app.post("/register", function (req, res) {
     res.redirect("/");
   });
 });
+
+//To use CSS add this in node js file.
+app.use(express.static(__dirname + "/public"));
