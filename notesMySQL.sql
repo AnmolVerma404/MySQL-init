@@ -1119,3 +1119,25 @@ SELECT CASE
 FROM users
 GROUP BY provider
 ORDER BY total_users DESC;
+
+-- 🔴 Database Triggers
+CREATE DATABASE trigger_demo;
+USE trigger_demo;
+CREATE TABLE users(
+    username VARCHAR(100),
+    age INT
+);
+INSERT INTO users(username,age) VALUES ("bobby",23);
+-- Here is how to use trigger to set warning if age < 18, also the value will not be inserted in the table
+DELIMITER $$
+CREATE TRIGGER must_be_adult
+    BEFORE INSERT ON users FOR EACH ROW 
+    BEGIN 
+        IF NEW.age < 18
+        THEN 
+            SIGNAL SQLSTATE '45000'
+                SET MESSAGE_TEXT = "Must be an adult";
+        END IF;
+    END;
+$$
+DELIMITER; 
