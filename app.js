@@ -125,13 +125,24 @@ app.get("/", function (req, res) {
 });
 
 // Sending HTML using ejs
-app.set("view engine", "ejs");// Add this file at the top!!!
-app.get("/",function(req,res){
-	var q = "SELECT COUNT(*) AS count FROM users";
-	connection.query(q, function(err,results){
-		if (err) throw err;
-		var count = results[0].count;
-		// res.send("We have " + count + " users in out database.");
-		res.render("home", {count : count});// count will be passed to the home.ejs file in an object, we can pass multiple values also!!!
-	});
+app.set("view engine", "ejs"); // Add this file at the top!!!
+app.get("/", function (req, res) {
+  var q = "SELECT COUNT(*) AS count FROM users";
+  connection.query(q, function (err, results) {
+    if (err) throw err;
+    var count = results[0].count;
+    // res.send("We have " + count + " users in out database.");
+    res.render("home", { count: count }); // count will be passed to the home.ejs file in an object, we can pass multiple values also!!!
+  });
+});
+
+// Connecting the Form
+// The '/register' post route:
+app.post("/register", function (req, res) {
+  var person = { email: req.body.email };
+  connection.query("INSERT INTO users SET ?", person, function (err, result) {
+    console.log(err);
+    console.log(result);
+    res.redirect("/");
+  });
 });
