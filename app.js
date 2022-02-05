@@ -123,3 +123,15 @@ app.get("/", function (req, res) {
     res.send(msg);
   });
 });
+
+// Sending HTML using ejs
+app.set("view engine", "ejs");// Add this file at the top!!!
+app.get("/",function(req,res){
+	var q = "SELECT COUNT(*) AS count FROM users";
+	connection.query(q, function(err,results){
+		if (err) throw err;
+		var count = results[0].count;
+		// res.send("We have " + count + " users in out database.");
+		res.render("home", {count : count});// count will be passed to the home.ejs file in an object, we can pass multiple values also!!!
+	});
+});
