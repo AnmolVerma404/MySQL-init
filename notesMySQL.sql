@@ -1157,3 +1157,24 @@ CREATE TRIGGER prevent_self_follows
 $$
 DELIMITER ;
 
+-- Save the data of unfollow for future use
+CREATE TABLE unfollows (
+    follower_id INTEGER NOT NULL,
+    followee_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES users(id),
+    FOREIGN KEY(followee_id) REFERENCES users(id),
+    PRIMARY KEY(follower_id, followee_id)
+);
+
+DELIMITER $$
+CREATE TRIGGER capture_unfollow
+    AFTER DELETE ON follows FOR EACH ROW -- After deletion/(when someone unfollows someone) of we will store there data. 
+    --This can be usefull when we want to analyse why a person x suddenly have many unfollowers and when someone unfollows someone
+    BEGIN 
+        INSERT INTO unfollows
+        SET follower_id = OLD.follower_id,
+            followee_id = OLD.followee_id;
+    END;
+$$
+DELIMITER ;
