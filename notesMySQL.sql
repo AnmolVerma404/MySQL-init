@@ -1123,6 +1123,8 @@ ORDER BY total_users DESC;
 -- 🔴 Database Triggers
 CREATE DATABASE trigger_demo;
 USE trigger_demo;
+SHOW TRIGGERS;
+DROP TRIGGER trigger_name;
 CREATE TABLE users(
     username VARCHAR(100),
     age INT
