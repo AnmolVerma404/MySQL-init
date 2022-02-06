@@ -1129,11 +1129,12 @@ CREATE TABLE users(
 );
 INSERT INTO users(username,age) VALUES ("bobby",23);
 -- Here is how to use trigger to set warning if age < 18, also the value will not be inserted in the table
-DELIMITER $$
+-- Not only warning they can we triggered for anything we say
+DELIMITER $$ -- Using DELIMITER we change the query end with ';' to $$, we can use other character also like %% or @@ etc...
 CREATE TRIGGER must_be_adult
-    BEFORE INSERT ON users FOR EACH ROW 
+    BEFORE INSERT ON users FOR EACH ROW -- BEFORE, INSERT, users are trigger time, event and table respectively
     BEGIN 
-        IF NEW.age < 18
+        IF NEW.age < 18 -- NEW refers to the new data that we are trying to insert
         THEN 
             SIGNAL SQLSTATE '45000'
                 SET MESSAGE_TEXT = "Must be an adult";
